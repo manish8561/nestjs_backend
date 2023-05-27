@@ -1,7 +1,7 @@
 {
-  "name": "test-docker",
-  "version": "0.0.1",
-  "description": "testing docker videos",
+  "name": "backend-nestjs-docker",
+  "version": "0.0.2",
+  "description": "Nest Backend with docker learning",
   "author": "Manish Sharma",
   "private": true,
   "license": "UNLICENSED",

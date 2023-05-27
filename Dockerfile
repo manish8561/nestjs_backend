@@ -1,5 +1,7 @@
 FROM node:18.16.0
 
+ARG DEFAULT_PORT=3000
+
 WORKDIR /app
 
 COPY package.json .
@@ -10,7 +12,9 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
+ENV PORT $DEFAULT_PORT
+
+EXPOSE $PORT
 
 CMD ["npm", "run", "start:dev"]
 
