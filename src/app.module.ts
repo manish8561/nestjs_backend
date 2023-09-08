@@ -11,7 +11,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot('mongodb://172.16.15.7:27017/nest'),
+    // MongooseModule.forRoot('mongodb://172.16.15.7:27017/nest'),
+    MongooseModule.forRoot('mongodb://mongodb:27017/nest'),
     FavoritesModule,
     MoviesModule,
     ServeStaticModule.forRoot({

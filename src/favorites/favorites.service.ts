@@ -3,14 +3,22 @@ import { CreateFavoriteDto } from './dto/create-favorite.dto';
 import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 import * as fs from 'fs';
 import { join } from 'path';
+import { Favorite } from './schemas/favorites.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 @Injectable()
 export class FavoritesService {
-  create(createFavoriteDto: CreateFavoriteDto) {
-    return 'This action adds a new favorite';
+  constructor(
+    @InjectModel(Favorite.name) private favoriteModel: Model<Favorite>,
+  ) {}
+
+  async create(createFavoriteDto: CreateFavoriteDto): Promise<Favorite> {
+    const createdCat = new this.favoriteModel(createFavoriteDto);
+    return createdCat.save();
   }
 
-  findAll() {
-    return `This action returns all favorites`;
+  async findAll(): Promise<Favorite[]> {
+    return this.favoriteModel.find();
   }
 
   findOne(id: number) {
