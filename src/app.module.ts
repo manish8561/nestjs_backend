@@ -17,11 +17,12 @@ import { ThrottlerModule } from '@nestjs/throttler';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        uri: `mongodb://${configService.get(
-          'MONGODB_USERNAME',
-        )}:${configService.get('MONGODB_PASSWORD')}@${configService.get(
-          'MONGODB_HOST',
-        )}:27017/nest?authSource=admin`,
+        uri: `mongodb://${configService.get('MONGODB_USERNAME')}
+        :
+        ${configService.get('MONGODB_PASSWORD')}
+        @
+        ${configService.get('MONGODB_HOST')}
+        :27017/nest?authSource=admin`,
       }),
       inject: [ConfigService],
     }),
