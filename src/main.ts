@@ -3,11 +3,21 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import morgan from 'morgan';
 
 async function bootstrap() {
   const logger = new Logger('---Backend Server---');
+  const logger2 = new Logger('http');
   const app = await NestFactory.create(AppModule);
   app.enableCors();
+  //implementing morgan
+  app.use(
+    morgan('tiny', {
+      stream: {
+        write: (message) => logger2.log(message.replace('\n', '')),
+      },
+    }),
+  );
 
   const configService = app.get(ConfigService);
 
