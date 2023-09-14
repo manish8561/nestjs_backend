@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend
+  labels:
+    group: example
 spec:
   selector:
     app: second-app
@@ -63,9 +65,16 @@ spec:
         - name: second-node
           image: manish198646/first-app:2
           imagePullPolicy: Always
+          env:
+            - name: MONGODB_HOST
+              value: '172.16.15.7'
+            - name: MONGODB_USERNAME
+              value: 'max'
+            - name: MONGODB_PASSWORD
+              value: 'secret'
           livenessProbe:
             httpGet:
-              path: /
+              path: /swagger
               port: 8000
             periodSeconds: 10
             initialDelaySeconds: 5
