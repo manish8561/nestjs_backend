@@ -12,5 +12,6 @@ import { Favorite, FavoriteSchema } from './schemas/favorites.schema';
   ],
   controllers: [FavoritesController],
   providers: [FavoritesService],
+  exports: [FavoritesService],
 })
 export class FavoritesModule {}
