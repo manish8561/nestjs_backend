@@ -12,7 +12,7 @@ describe('FavoritesController', () => {
       providers: [
         FavoritesService,
         {
-          provide: 'FavoriteModel',
+          provide: 'FavoriteModel', // including other respository for testing
           useValue: mockFavoriteModel,
         },
       ],
